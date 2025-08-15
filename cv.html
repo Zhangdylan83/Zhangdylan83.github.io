@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Wenbo Zhang</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="nav-name">Homepage of Wenbo Zhang</a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">About</a>
+                <a href="publications.html" class="nav-link">Publications</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="cv.html" class="nav-link active">CV</a>
+                <button class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <h1 class="page-title"><i class="fas fa-file-alt"></i> Curriculum Vitae</h1>
+        <p class="last-updated">Last Updated: <span id="lastUpdated"></span></p>
+        
+        <div class="container">
+            <div class="cv-content">
+                <!-- CV content here -->
+                <div class="cv-actions">
+                    <a href="Document/CV_Wenbo_PhD_student.pdf" class="action-button preview-button" target="_blank">
+                        <i class="fas fa-eye"></i>
+                        Preview CV
+                    </a>
+                    <a href="Document/CV_Wenbo_PhD_student.pdf" class="action-button download-button" download>
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Get actual last modification time of CV file and HTML file
+        async function updateLastModifiedTime() {
+            try {
+                // First try to get the CV PDF file modification time
+                const cvResponse = await fetch('Document/CV_Wenbo_PhD_student.pdf', { method: 'HEAD' });
+                if (cvResponse.ok) {
+                    const cvLastModified = cvResponse.headers.get('last-modified');
+                    if (cvLastModified) {
+                        const date = new Date(cvLastModified);
+                        const options = { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            timeZoneName: 'short'
+                        };
+                        document.getElementById('lastUpdated').textContent = date.toLocaleDateString('en-US', options);
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.log('Could not fetch CV PDF headers');
+            }
+
+            try {
+                // If CV PDF not available, try to get the HTML file modification time
+                const htmlResponse = await fetch(window.location.pathname, { method: 'HEAD' });
+                if (htmlResponse.ok) {
+                    const htmlLastModified = htmlResponse.headers.get('last-modified');
+                    if (htmlLastModified) {
+                        const date = new Date(htmlLastModified);
+                        const options = { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            timeZoneName: 'short'
+                        };
+                        document.getElementById('lastUpdated').textContent = date.toLocaleDateString('en-US', options);
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.log('Could not fetch HTML page headers');
+            }
+            
+            // Fallback: use current time if no headers available
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZoneName: 'short'
+            };
+            document.getElementById('lastUpdated').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLastModifiedTime();
+        });
+    </script>
+</body>
+</html> 

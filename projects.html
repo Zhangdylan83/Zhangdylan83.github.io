@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Wenbo Zhang</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="index.html" class="nav-name">Homepage of Wenbo Zhang</a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">About</a>
+                <a href="publications.html" class="nav-link">Publications</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="cv.html" class="nav-link">CV</a>
+                <button class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <h1 class="page-title"><i class="fas fa-code-branch"></i> Projects</h1>
+        
+        <div class="container">
+            <div class="publication-list">
+                <div class="publication-item">
+                    <div class="pub-content">
+                        <h2 class="pub-title">INSIGHT: Explainable Weakly-Supervised Medical Image Analysis</h2>
+                        <p class="project-description">
+                            Due to their large sizes, volumetric scans and whole-slide pathology images (WSIs) are
+                            often processed by extracting embeddings from local regions and then an aggregator makes
+                            predictions from this set. However, current methods require post-hoc visualization techniques (e.g., Grad-CAM) and often fail to localize small yet clinically crucial details. To
+                            address these limitations, we introduce INSIGHT, a novel weakly-supervised aggregator
+                            that integrates heatmap generation as an inductive bias. Starting from pre-trained feature
+                            maps, INSIGHT employs a detection module with small convolutional kernels to capture
+                            fine details and a context module with a broader receptive field to suppress local false positives. The resulting internal heatmap highlights diagnostically relevant regions. On CT
+                            and WSI benchmarks, INSIGHT achieves state-of-the-art classification results and high
+                            weakly-labeled semantic segmentation performance.
+                        </p>
+                        <div class="pub-links">
+                            <a href="https://zhangdylan83.github.io/ewsmia/" class="pub-link">
+                                <i class="fas fa-globe"></i>
+                                <span>Website</span>
+                            </a>
+                            <a href="#" class="pub-link" onclick="alert('Demo will be available in the future!'); return false;">
+                                <i class="fas fa-play"></i>
+                                <span>Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
